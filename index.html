@@ -3,34 +3,167 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#191019" />
-  <title>Pinker Bar Menu</title>
+  <meta name="theme-color" content="#080808" />
+  <title>Picker Lounge Bar Menu</title>
   <style>
-    :root{--bg:#120d12;--card:#1d151d;--text:#fff7fb;--muted:#c8b7c2;--accent:#ff5bbd;--line:#352635}
+    :root{
+      --bg:#050505;
+      --panel:rgba(10,10,10,.62);
+      --panel-strong:rgba(8,8,8,.78);
+      --text:#ffffff;
+      --muted:#cfcfcf;
+      --accent:#e00000;
+      --accent-soft:#ff2b2b;
+      --line:rgba(255,255,255,.14);
+    }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#100b10,#1b111b);color:var(--text)}
-    .wrap{max-width:760px;margin:auto;padding:24px 16px 56px}
-    header{text-align:center;padding:22px 8px 18px}
-    .logo{font-size:42px;font-weight:800;letter-spacing:.08em;color:var(--accent)}
-    .tag{color:var(--muted);margin-top:6px}
-    .langs{display:flex;gap:8px;justify-content:center;position:sticky;top:0;z-index:5;padding:12px 0;background:rgba(18,13,18,.92);backdrop-filter:blur(12px)}
-    button{border:1px solid var(--line);background:#211721;color:var(--text);padding:10px 14px;border-radius:999px;font-weight:700;cursor:pointer}
-    button.active{background:var(--accent);color:#25101e;border-color:var(--accent)}
-    .section{margin-top:22px}
-    .section h2{font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
-    .card{background:rgba(29,21,29,.92);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 34px rgba(0,0,0,.18)}
-    .item{display:flex;justify-content:space-between;gap:14px;padding:14px 16px;border-bottom:1px solid var(--line);align-items:flex-start}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 18% 12%,rgba(224,0,0,.18),transparent 28%),
+        radial-gradient(circle at 82% 4%,rgba(255,255,255,.08),transparent 18%),
+        linear-gradient(180deg,#050505 0%,#0c0c0c 45%,#050505 100%);
+      background-attachment:fixed;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.72)),
+        repeating-linear-gradient(135deg,rgba(255,255,255,.018) 0 1px,transparent 1px 12px);
+      z-index:-1;
+    }
+    .wrap{max-width:820px;margin:auto;padding:18px 14px 58px}
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:28px;
+      padding:34px 18px 28px;
+      text-align:center;
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.015)),
+        rgba(6,6,6,.72);
+      box-shadow:0 24px 70px rgba(0,0,0,.52),inset 0 1px 0 rgba(255,255,255,.08);
+      backdrop-filter:blur(18px) saturate(120%);
+      -webkit-backdrop-filter:blur(18px) saturate(120%);
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:auto -20% -55% -20%;
+      height:220px;
+      background:radial-gradient(circle,rgba(224,0,0,.34),transparent 65%);
+      filter:blur(16px);
+      pointer-events:none;
+    }
+    .mark{
+      width:82px;
+      height:82px;
+      margin:0 auto 16px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      font-size:46px;
+      font-weight:900;
+      letter-spacing:-.08em;
+      background:linear-gradient(145deg,#ff1010,#a80000);
+      box-shadow:0 0 34px rgba(255,0,0,.4),inset 0 1px 0 rgba(255,255,255,.28);
+    }
+    .logo{font-size:46px;line-height:.95;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
+    .logo span{color:var(--accent-soft)}
+    .tag{color:var(--muted);margin-top:10px;font-size:13px;letter-spacing:.22em;text-transform:uppercase}
+    .langs{
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      position:sticky;
+      top:8px;
+      z-index:20;
+      width:max-content;
+      max-width:100%;
+      margin:14px auto 0;
+      padding:7px;
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:999px;
+      background:rgba(8,8,8,.66);
+      box-shadow:0 14px 34px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.08);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+    }
+    button{
+      border:0;
+      background:transparent;
+      color:#e8e8e8;
+      padding:10px 14px;
+      border-radius:999px;
+      font-weight:800;
+      cursor:pointer;
+    }
+    button.active{background:linear-gradient(135deg,#ff1f1f,#b90000);color:#fff;box-shadow:0 8px 20px rgba(224,0,0,.28)}
+    .section{margin-top:18px}
+    .section h2{
+      font-size:14px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:#fff;
+      margin:0 0 9px 4px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .section h2::before{content:"";width:24px;height:3px;border-radius:999px;background:linear-gradient(90deg,var(--accent-soft),transparent)}
+    .card{
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:22px;
+      background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.015)),var(--panel);
+      box-shadow:0 18px 46px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.06);
+      backdrop-filter:blur(18px) saturate(115%);
+      -webkit-backdrop-filter:blur(18px) saturate(115%);
+    }
+    .item{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      padding:15px 16px;
+      border-bottom:1px solid var(--line);
+      align-items:flex-start;
+    }
     .item:last-child{border-bottom:0}
-    .name{font-weight:650;line-height:1.25}
-    .price{white-space:nowrap;font-weight:800;color:#ffd5ee}
-    footer{text-align:center;color:var(--muted);font-size:13px;margin-top:30px}
+    .name{font-weight:720;line-height:1.28}
+    .price{white-space:nowrap;font-weight:900;color:#fff;text-shadow:0 0 16px rgba(255,0,0,.25)}
+    footer{
+      text-align:center;
+      color:#a8a8a8;
+      font-size:12px;
+      margin-top:28px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    @media (max-width:560px){
+      .wrap{padding:12px 10px 42px}
+      .hero{padding:28px 14px 24px;border-radius:24px}
+      .logo{font-size:38px}
+      .tag{font-size:11px;letter-spacing:.17em}
+      button{padding:9px 11px;font-size:13px}
+      .item{padding:14px}
+    }
   </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <div class="logo">PINKER</div>
-    <div class="tag" id="tagline">Bar menu</div>
+  <header class="hero">
+    <div class="mark">P</div>
+    <div class="logo">PICK<span>ER</span></div>
+    <div class="tag" id="tagline">Lounge Bar · Nha Trang</div>
   </header>
   <div class="langs">
     <button data-lang="ru">Русский</button>
@@ -43,7 +176,7 @@
 <script>
 const data = [
   {ru:'Фирменные коктейли',en:'Signature Cocktails',ko:'시그니처 칵테일',items:[
-    ['Свежий выбор','Fresh Pick','신선한 선택','229'],['Апероль Джин-и','Aperol Gin-ie','아페롤 진','229'],['Выбор судьбы','Pick of Destiny','운명의 선택','229'],['Пинкер','Pinker','핑커','229'],['Высокая нота','High Note','고음','229']]},
+    ['Свежий выбор','Fresh Pick','신선한 선택','229'],['Апероль Джин-и','Aperol Gin-ie','아페롤 진','229'],['Выбор судьбы','Pick of Destiny','운명의 선택','229'],['Пикер','Picker','피커','229'],['Высокая нота','High Note','고음','229']]},
   {ru:'Классические коктейли',en:'Classic Cocktails',ko:'클래식 칵테일',items:[
     ['Негрони','Negroni','네그로니','199'],['Виски сауэр','Whiskey Sour','위스키 사워','199'],['Апероль Спритц','Aperol Spritz','아페롤 스프리츠','199'],['Мохито','Mojito','모히토','199'],['Дайкири','Daiquiri','다이키리','199'],['Олд фэшн','Old Fashioned','올드 패션드','199'],['Бульвардье','Boulevardier','불바르디에','199'],['Уайт леди','White Lady','화이트 레이디','199'],['Френч 75','French 75','프렌치 75','199'],['Маргарита','Margarita','마르가리타','199'],['Кловер Клаб','Clover Club','클로버 클럽','199'],['Лонг-Айленд Айс Ти','Long Island Iced Tea','롱 아일랜드 아이스티','209']]},
   {ru:'Специальные коктейли',en:'Special Cocktails',ko:'스페셜 칵테일',items:[
@@ -78,7 +211,7 @@ const data = [
     ['Martini Prosecco','Martini Prosecco','마티니 프로세코','119 / 1549'],['Martini Asti','Martini Asti','마티니 아스티','119 / 1549']]}
 ];
 let lang='en';
-const labels={ru:{tag:'Барное меню',foot:'Цены указаны в тысячах VND'},en:{tag:'Bar menu',foot:'Prices in thousands of VND'},ko:{tag:'바 메뉴',foot:'가격은 천 VND 단위입니다'}};
+const labels={ru:{tag:'Lounge Bar · Нячанг',foot:'Цены указаны в тысячах VND'},en:{tag:'Lounge Bar · Nha Trang',foot:'Prices in thousands of VND'},ko:{tag:'라운지 바 · 나트랑',foot:'가격은 천 VND 단위입니다'}};
 function render(){
   document.documentElement.lang=lang;
   document.getElementById('tagline').textContent=labels[lang].tag;
