@@ -48,53 +48,17 @@
     .hero{
       position:relative;
       overflow:hidden;
-      border:1px solid rgba(255,255,255,.16);
-      border-radius:0;
-      clip-path:polygon(var(--cut) 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%,0 var(--cut));
-      padding:34px 18px 28px;
+      padding:10px 0 4px;
       text-align:center;
-      background:
-        linear-gradient(145deg,rgba(255,49,77,.16),rgba(255,255,255,.018)),
-        rgba(6,3,4,.78);
-      box-shadow:0 24px 70px rgba(0,0,0,.52),inset 0 1px 0 rgba(255,255,255,.08);
-      backdrop-filter:blur(14px) saturate(130%);
-      -webkit-backdrop-filter:blur(14px) saturate(130%);
     }
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:auto -20% -55% -20%;
-      height:220px;
-      background:radial-gradient(circle,rgba(255,0,43,.42),transparent 65%);
-      filter:blur(16px);
-      pointer-events:none;
-    }
-    .mark{
-      width:82px;
-      height:82px;
-      margin:0 auto 16px;
+    .brand-logo{
+      display:block;
+      width:min(190px,46vw);
+      height:auto;
+      margin:0 auto;
       border-radius:50%;
-      display:grid;
-      place-items:center;
-      color:#fff;
-      font-size:46px;
-      font-family:"Tektur","Roboto Condensed",sans-serif;
-      font-weight:900;
-      letter-spacing:-.08em;
-      background:linear-gradient(145deg,#ff002b,#8f0018);
-      box-shadow:0 0 34px rgba(255,0,0,.4),inset 0 1px 0 rgba(255,255,255,.28);
+      filter:drop-shadow(0 0 22px rgba(255,0,43,.44)) drop-shadow(0 16px 32px rgba(0,0,0,.65));
     }
-    .logo{
-      font-family:"Tektur","Roboto Condensed",sans-serif;
-      font-size:48px;
-      line-height:.95;
-      font-weight:900;
-      letter-spacing:.1em;
-      text-transform:uppercase;
-      text-shadow:0 0 22px rgba(255,0,43,.45);
-    }
-    .logo span{color:var(--accent-soft)}
-    .tag{color:var(--muted);margin-top:10px;font-size:13px;font-weight:700;letter-spacing:.24em;text-transform:uppercase}
     .langs{
       display:flex;
       gap:8px;
@@ -170,9 +134,8 @@
     }
     @media (max-width:560px){
       .wrap{padding:12px 10px 42px}
-      .hero{padding:28px 14px 24px}
-      .logo{font-size:38px}
-      .tag{font-size:11px;letter-spacing:.17em}
+      .hero{padding:8px 0 2px}
+      .brand-logo{width:min(156px,48vw)}
       button{padding:9px 11px;font-size:13px}
       .item{padding:14px}
     }
@@ -181,9 +144,7 @@
 <body>
 <div class="wrap">
   <header class="hero">
-    <div class="mark">P</div>
-    <div class="logo">PICK<span>ER</span></div>
-    <div class="tag" id="tagline">Lounge Bar · Nha Trang</div>
+    <img class="brand-logo" src="assets/picker-logo.jpg" alt="Picker">
   </header>
   <div class="langs">
     <button data-lang="ru">Русский</button>
@@ -234,7 +195,6 @@ let lang='en';
 const labels={ru:{tag:'Lounge Bar · Нячанг',foot:'Цены указаны в тысячах VND'},en:{tag:'Lounge Bar · Nha Trang',foot:'Prices in thousands of VND'},ko:{tag:'라운지 바 · 나트랑',foot:'가격은 천 VND 단위입니다'}};
 function render(){
   document.documentElement.lang=lang;
-  document.getElementById('tagline').textContent=labels[lang].tag;
   document.getElementById('footer').textContent=labels[lang].foot;
   document.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
   document.getElementById('menu').innerHTML=data.map(s=>`<section class="section"><h2>${s[lang]}</h2><div class="card">${s.items.map(i=>`<div class="item"><div class="name">${i[lang==='ru'?0:lang==='en'?1:2]}</div><div class="price">${i[3]}</div></div>`).join('')}</div></section>`).join('');
