@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#191019" />
+  <title>Pinker Bar Menu</title>
+  <style>
+    :root{--bg:#120d12;--card:#1d151d;--text:#fff7fb;--muted:#c8b7c2;--accent:#ff5bbd;--line:#352635}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#100b10,#1b111b);color:var(--text)}
+    .wrap{max-width:760px;margin:auto;padding:24px 16px 56px}
+    header{text-align:center;padding:22px 8px 18px}
+    .logo{font-size:42px;font-weight:800;letter-spacing:.08em;color:var(--accent)}
+    .tag{color:var(--muted);margin-top:6px}
+    .langs{display:flex;gap:8px;justify-content:center;position:sticky;top:0;z-index:5;padding:12px 0;background:rgba(18,13,18,.92);backdrop-filter:blur(12px)}
+    button{border:1px solid var(--line);background:#211721;color:var(--text);padding:10px 14px;border-radius:999px;font-weight:700;cursor:pointer}
+    button.active{background:var(--accent);color:#25101e;border-color:var(--accent)}
+    .section{margin-top:22px}
+    .section h2{font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+    .card{background:rgba(29,21,29,.92);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 34px rgba(0,0,0,.18)}
+    .item{display:flex;justify-content:space-between;gap:14px;padding:14px 16px;border-bottom:1px solid var(--line);align-items:flex-start}
+    .item:last-child{border-bottom:0}
+    .name{font-weight:650;line-height:1.25}
+    .price{white-space:nowrap;font-weight:800;color:#ffd5ee}
+    footer{text-align:center;color:var(--muted);font-size:13px;margin-top:30px}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">PINKER</div>
+    <div class="tag" id="tagline">Bar menu</div>
+  </header>
+  <div class="langs">
+    <button data-lang="ru">Русский</button>
+    <button data-lang="en" class="active">English</button>
+    <button data-lang="ko">한국어</button>
+  </div>
+  <main id="menu"></main>
+  <footer id="footer">Prices in thousands of VND</footer>
+</div>
+<script>
+const data = [
+  {ru:'Фирменные коктейли',en:'Signature Cocktails',ko:'시그니처 칵테일',items:[
+    ['Свежий выбор','Fresh Pick','신선한 선택','229'],['Апероль Джин-и','Aperol Gin-ie','아페롤 진','229'],['Выбор судьбы','Pick of Destiny','운명의 선택','229'],['Пинкер','Pinker','핑커','229'],['Высокая нота','High Note','고음','229']]},
+  {ru:'Классические коктейли',en:'Classic Cocktails',ko:'클래식 칵테일',items:[
+    ['Негрони','Negroni','네그로니','199'],['Виски сауэр','Whiskey Sour','위스키 사워','199'],['Апероль Спритц','Aperol Spritz','아페롤 스프리츠','199'],['Мохито','Mojito','모히토','199'],['Дайкири','Daiquiri','다이키리','199'],['Олд фэшн','Old Fashioned','올드 패션드','199'],['Бульвардье','Boulevardier','불바르디에','199'],['Уайт леди','White Lady','화이트 레이디','199'],['Френч 75','French 75','프렌치 75','199'],['Маргарита','Margarita','마르가리타','199'],['Кловер Клаб','Clover Club','클로버 클럽','199'],['Лонг-Айленд Айс Ти','Long Island Iced Tea','롱 아일랜드 아이스티','209']]},
+  {ru:'Специальные коктейли',en:'Special Cocktails',ko:'스페셜 칵테일',items:[
+    ['Базил Маргарита','Basil Margarita','바질 마르가리타','219'],['Маракуйя Френч 75','Passion Fruit French 75','패션프루트 프렌치 75','219'],['Клубничный Негрони','Strawberry Negroni','딸기 네그로니','219'],['Манговый Дайкири','Mango Daiquiri','망고 다이키리','219'],['Апельсиновый Виски Сауэр','Orange Whiskey Sour','오렌지 위스키 사워','219']]},
+  {ru:'Микс-дринки',en:'Mixed Drinks',ko:'믹스 드링크',items:[
+    ['Виски и кола','Whiskey & Cola','위스키 콜라','159'],['Ром и кола','Rum & Cola','럼 콜라','159'],['Джин-тоник','Gin & Tonic','진토닉','159']]},
+  {ru:'Безалкогольные коктейли',en:'Non-Alcohol',ko:'무알코올',items:[
+    ['Лимонад манго-маракуйя','Mango Passion Lemonade','망고 패션 레모네이드','99'],['Малиново-яблочный физз','Raspberry Apple Fizz','라즈베리 애플 피즈','99'],['Клубнично-базиликовый лимонад','Strawberry Basil Lemonade','딸기 바질 레모네이드','99']]},
+  {ru:'Кофе',en:'Coffee',ko:'커피',items:[
+    ['Эспрессо','Espresso','에스프레소','49'],['Двойной эспрессо','Double Espresso','더블 에스프레소','89'],['Американо, холодный или горячий','Americano, Ice / Hot','아메리카노, 아이스 / 핫','49'],['Капучино, холодный или горячий','Cappuccino, Ice / Hot','카푸치노, 아이스 / 핫','59'],['Латте','Latte','라떼','59'],['Добавить сироп','Add Syrup','시럽 추가','19'],['Альтернативное молоко','Alternative Milk','대체 우유','9'],['Айс латте','Iced Latte','아이스 라떼','59'],['Айс кофе с сиропом','Iced Coffee with Syrup','시럽 아이스 커피','69']]},
+  {ru:'Безалкогольные напитки',en:'Soft Drinks',ko:'소프트 드링크',items:[
+    ['Кока-Кола','Coke','코카콜라','49'],['Спрайт','Sprite','스프라이트','49'],['Фанта','Fanta','환타','49'],['Тоник','Tonic','토닉','49'],['Имбирный эль','Ginger Ale','진저에일','49'],['Вода','Water','물','49'],['Ред Булл','Red Bull','레드불','79'],['Кока-Кола Зеро','Coca-Cola Zero','코카콜라 제로','49'],['Содовая','Soda Water','소다수','49']]},
+  {ru:'Пиво',en:'Beer',ko:'맥주',items:[
+    ['Tiger','Tiger','타이거','59'],['Heineken','Heineken','하이네켄','79'],['Sapporo','Sapporo','삿포로','99'],['Corona','Corona','코로나','99']]},
+  {ru:'Вино и игристое по бокалам',en:'Wine & Sparkling by the Glass',ko:'와인 & 스파클링, 글라스',items:[
+    ['Белое вино','White Wine','화이트 와인','169'],['Красное вино','Red Wine','레드 와인','169'],['Martini Prosecco','Martini Prosecco','마티니 프로세코','259'],['Игристое брют','Brut Sparkling Wine','브뤼 스파클링 와인','169']]},
+  {ru:'Водка, 50 мл / бутылка',en:'Vodka, 50 ml / bottle',ko:'보드카, 50ml / 병',items:[
+    ['Absolut','Absolut','앱솔루트','99 / 1199'],['Smirnoff','Smirnoff','스미르노프','99 / 1199']]},
+  {ru:'Виски, 50 мл / бутылка',en:'Whiskey, 50 ml / bottle',ko:'위스키, 50ml / 병',items:[
+    ['Jameson','Jameson','제임슨','119 / 1549'],['Jim Beam','Jim Beam','짐 빔','109 / 1549'],["Jack Daniel's","Jack Daniel's",'잭 다니엘스','119 / 1549'],['Johnnie Walker Black Label 12','Johnnie Walker Black Label 12','조니워커 블랙 라벨 12','149 / 1999'],['Johnnie Walker Red Label','Johnnie Walker Red Label','조니워커 레드 라벨','119 / 1549'],['Chivas Regal 12','Chivas Regal 12','시바스 리갈 12','149 / 1999'],["Ballantine's Finest","Ballantine's Finest",'발렌타인 파이니스트','119 / 1549']]},
+  {ru:'Ром, 50 мл / бутылка',en:'Rum, 50 ml / bottle',ko:'럼, 50ml / 병',items:[
+    ['Bacardi Carta Blanca','Bacardi Carta Blanca','바카디 카르타 블랑카','99 / 1199'],['Captain Morgan Dark','Captain Morgan Dark','캡틴 모건 다크','99 / 1199'],['Captain Morgan Spiced Gold','Captain Morgan Spiced Gold','캡틴 모건 스파이스드 골드','99 / 1199']]},
+  {ru:'Джин, 50 мл / бутылка',en:'Gin, 50 ml / bottle',ko:'진, 50ml / 병',items:[
+    ['Bombay Sapphire','Bombay Sapphire','봄베이 사파이어','119 / 1549'],["Gordon's London Dry Gin","Gordon's London Dry Gin",'고든스 런던 드라이 진','99 / 1199']]},
+  {ru:'Текила, 50 мл / бутылка',en:'Tequila, 50 ml / bottle',ko:'데킬라, 50ml / 병',items:[
+    ['Jose Cuervo Especial Silver','Jose Cuervo Especial Silver','호세 쿠에르보 에스페셜 실버','109 / 1549'],['Jose Cuervo Especial Gold','Jose Cuervo Especial Gold','호세 쿠에르보 에스페셜 골드','119 / 1549']]},
+  {ru:'Ликеры и дижестивы, 50 мл / бутылка',en:'Liqueurs & Digestifs, 50 ml / bottle',ko:'리큐어 & 다이제스티프, 50ml / 병',items:[
+    ['Baileys','Baileys','베일리스','119 / 1549'],['Kahlúa','Kahlúa','칼루아','119 / 1549'],['Malibu','Malibu','말리부','119 / 1549'],['Jägermeister','Jägermeister','예거마이스터','99 / 1199']]},
+  {ru:'Аперитивы и вермуты',en:'Aperitifs & Vermouths',ko:'아페리티프 & 베르무트',items:[
+    ['Aperol','Aperol','아페롤','119 / 1549'],['Campari','Campari','캄파리','119 / 1549'],['Martini Rosso','Martini Rosso','마티니 로쏘','119 / 1549'],['Martini Extra Dry','Martini Extra Dry','마티니 엑스트라 드라이','119 / 1549']]},
+  {ru:'Игристое вино',en:'Sparkling Wine',ko:'스파클링 와인',items:[
+    ['Martini Prosecco','Martini Prosecco','마티니 프로세코','119 / 1549'],['Martini Asti','Martini Asti','마티니 아스티','119 / 1549']]}
+];
+let lang='en';
+const labels={ru:{tag:'Барное меню',foot:'Цены указаны в тысячах VND'},en:{tag:'Bar menu',foot:'Prices in thousands of VND'},ko:{tag:'바 메뉴',foot:'가격은 천 VND 단위입니다'}};
+function render(){
+  document.documentElement.lang=lang;
+  document.getElementById('tagline').textContent=labels[lang].tag;
+  document.getElementById('footer').textContent=labels[lang].foot;
+  document.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+  document.getElementById('menu').innerHTML=data.map(s=>`<section class="section"><h2>${s[lang]}</h2><div class="card">${s.items.map(i=>`<div class="item"><div class="name">${i[lang==='ru'?0:lang==='en'?1:2]}</div><div class="price">${i[3]}</div></div>`).join('')}</div></section>`).join('');
+}
+document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.lang;render()}));
+render();
+</script>
+</body>
+</html>
