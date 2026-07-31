@@ -9,198 +9,76 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700;900&family=Roboto+Condensed:wght@400;700;900&family=Tektur:wght@500;700;900&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#050505;
-      --panel:rgba(10,5,6,.68);
-      --panel-strong:rgba(8,3,4,.84);
-      --text:#ffffff;
-      --muted:#d8c2c2;
-      --accent:#ff002b;
-      --accent-soft:#ff314d;
-      --line:rgba(255,255,255,.16);
-      --cut:16px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      min-height:100vh;
-      font-family:"Roboto Condensed","Noto Sans KR",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      color:var(--text);
-      background:
-        linear-gradient(180deg,rgba(0,0,0,.52),rgba(0,0,0,.9)),
-        radial-gradient(circle at 18% 12%,rgba(255,0,43,.3),transparent 26%),
-        url("assets/picker-bg.jpg") center top / cover no-repeat,
-        #050505;
-      background-attachment:fixed;
-    }
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      background:
-        linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.2) 44%,rgba(0,0,0,.82)),
-        repeating-linear-gradient(135deg,rgba(255,255,255,.026) 0 1px,transparent 1px 10px);
-      z-index:-1;
-    }
-    .wrap{max-width:820px;margin:auto;padding:18px 14px 58px}
-    .hero{
-      position:relative;
-      overflow:hidden;
-      padding:10px 0 4px;
-      text-align:center;
-    }
-    .brand-logo{
-      display:block;
-      width:min(190px,46vw);
-      height:auto;
-      margin:0 auto;
-      border-radius:50%;
-      filter:drop-shadow(0 0 22px rgba(255,0,43,.44)) drop-shadow(0 16px 32px rgba(0,0,0,.65));
-    }
-    .langs{
-      display:flex;
-      gap:8px;
-      justify-content:center;
-      position:sticky;
-      top:8px;
-      z-index:20;
-      width:max-content;
-      max-width:100%;
-      margin:14px auto 0;
-      padding:7px;
-      border:1px solid rgba(255,255,255,.15);
-      border-radius:0;
-      clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
-      background:rgba(8,3,4,.72);
-      box-shadow:0 14px 34px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.08);
-      backdrop-filter:blur(18px);
-      -webkit-backdrop-filter:blur(18px);
-    }
-    button{
-      border:0;
-      background:transparent;
-      color:#e8e8e8;
-      padding:10px 14px;
-      border-radius:0;
-      font-family:"Tektur","Noto Sans KR",sans-serif;
-      font-weight:800;
-      letter-spacing:.04em;
-      cursor:pointer;
-    }
-    button.active{background:linear-gradient(135deg,#ff314d,#b90020);color:#fff;box-shadow:0 8px 20px rgba(255,0,43,.28)}
-    .section{margin-top:18px}
-    .section h2{
-      font-size:14px;
-      font-family:"Tektur","Noto Sans KR",sans-serif;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color:#fff;
-      margin:0 0 9px 4px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .section h2::before{content:"";width:28px;height:3px;background:linear-gradient(90deg,var(--accent-soft),transparent)}
-    .card{
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:0;
-      clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);
-      background:linear-gradient(145deg,rgba(255,49,77,.1),rgba(255,255,255,.018)),var(--panel);
-      box-shadow:0 18px 46px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.06);
-      backdrop-filter:blur(13px) saturate(125%);
-      -webkit-backdrop-filter:blur(13px) saturate(125%);
-    }
-    .item{
-      display:flex;
-      justify-content:space-between;
-      gap:16px;
-      padding:15px 16px;
-      border-bottom:1px solid var(--line);
-      align-items:flex-start;
-    }
-    .item:last-child{border-bottom:0}
-    .name{font-weight:720;line-height:1.28}
-    .price{white-space:nowrap;font-family:"Tektur","Roboto Condensed",sans-serif;font-weight:900;color:#fff;text-shadow:0 0 16px rgba(255,0,43,.35)}
-    footer{
-      text-align:center;
-      color:#a8a8a8;
-      font-size:12px;
-      margin-top:28px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-    @media (max-width:560px){
-      .wrap{padding:12px 10px 42px}
-      .hero{padding:8px 0 2px}
-      .brand-logo{width:min(156px,48vw)}
-      button{padding:9px 11px;font-size:13px}
-      .item{padding:14px}
-    }
+    :root{--panel:rgba(10,5,6,.68);--text:#fff;--muted:#d8c2c2;--accent:#ff002b;--accent-soft:#ff314d;--line:rgba(255,255,255,.16)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;min-height:100vh;font-family:"Roboto Condensed","Noto Sans KR",system-ui,sans-serif;color:var(--text);background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.92)),radial-gradient(circle at 18% 12%,rgba(255,0,43,.3),transparent 26%),url("assets/picker-bg.jpg") center top/cover no-repeat fixed,#050505}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.74),rgba(0,0,0,.18) 44%,rgba(0,0,0,.84));z-index:-1}
+    .wrap{max-width:820px;margin:auto;padding:18px 14px 58px}.hero{text-align:center;padding:10px 0 4px}.brand-logo{display:block;width:min(190px,46vw);height:auto;margin:auto;border-radius:50%;filter:drop-shadow(0 0 22px rgba(255,0,43,.44)) drop-shadow(0 16px 32px rgba(0,0,0,.65))}
+    .langs{display:flex;gap:8px;justify-content:center;position:sticky;top:8px;z-index:20;width:max-content;max-width:100%;margin:14px auto 0;padding:7px;border:1px solid rgba(255,255,255,.15);background:rgba(8,3,4,.72);box-shadow:0 14px 34px rgba(0,0,0,.32);backdrop-filter:blur(18px)}
+    button{border:0;background:transparent;color:#e8e8e8;padding:10px 14px;font-family:"Tektur","Noto Sans KR",sans-serif;font-weight:800;cursor:pointer}button.active{background:linear-gradient(135deg,#ff314d,#b90020);color:#fff}
+    .section{margin-top:18px}.section h2{font-size:14px;font-family:"Tektur","Noto Sans KR",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#fff;margin:0 0 9px 4px;display:flex;align-items:center;gap:10px}.section h2::before{content:"";width:28px;height:3px;background:linear-gradient(90deg,var(--accent-soft),transparent)}
+    .card{overflow:hidden;border:1px solid rgba(255,255,255,.12);background:linear-gradient(145deg,rgba(255,49,77,.1),rgba(255,255,255,.018)),var(--panel);box-shadow:0 18px 46px rgba(0,0,0,.34);backdrop-filter:blur(13px) saturate(125%)}
+    .item{display:flex;justify-content:space-between;gap:16px;padding:15px 16px;border-bottom:1px solid var(--line);align-items:flex-start}.item:last-child{border-bottom:0}.item-main{min-width:0}.name{font-weight:800;line-height:1.25}.ingredients{margin-top:5px;color:var(--muted);font-size:13px;line-height:1.35}.price{white-space:nowrap;font-family:"Tektur",sans-serif;font-weight:900;color:#fff;text-shadow:0 0 16px rgba(255,0,43,.35)}
+    footer{text-align:center;color:#aaa;font-size:12px;margin-top:28px;letter-spacing:.08em;text-transform:uppercase}@media(max-width:560px){.wrap{padding:12px 10px 42px}.brand-logo{width:min(156px,48vw)}button{padding:9px 11px;font-size:13px}.item{padding:14px}.ingredients{font-size:12px}}
   </style>
 </head>
 <body>
 <div class="wrap">
-  <header class="hero">
-    <img class="brand-logo" src="assets/picker-logo.jpg" alt="Picker">
-  </header>
-  <div class="langs">
-    <button data-lang="ru">Русский</button>
-    <button data-lang="en" class="active">English</button>
-    <button data-lang="ko">한국어</button>
-  </div>
-  <main id="menu"></main>
-  <footer id="footer">Prices in thousands of VND</footer>
+  <header class="hero"><img class="brand-logo" src="assets/picker-logo.jpg" alt="Picker"></header>
+  <div class="langs"><button data-lang="ru">Русский</button><button data-lang="en" class="active">English</button><button data-lang="ko">한국어</button></div>
+  <main id="menu"></main><footer id="footer">Prices in thousands of VND</footer>
 </div>
 <script>
-const data = [
-  {ru:'Фирменные коктейли',en:'Signature Cocktails',ko:'시그니처 칵테일',items:[
-    ['Свежий выбор','Fresh Pick','신선한 선택','229'],['Апероль Джин-и','Aperol Gin-ie','아페롤 진','229'],['Выбор судьбы','Pick of Destiny','운명의 선택','229'],['Пикер','Picker','피커','229'],['Высокая нота','High Note','고음','229']]},
-  {ru:'Классические коктейли',en:'Classic Cocktails',ko:'클래식 칵테일',items:[
-    ['Негрони','Negroni','네그로니','199'],['Виски сауэр','Whiskey Sour','위스키 사워','199'],['Апероль Спритц','Aperol Spritz','아페롤 스프리츠','199'],['Мохито','Mojito','모히토','199'],['Дайкири','Daiquiri','다이키리','199'],['Олд фэшн','Old Fashioned','올드 패션드','199'],['Бульвардье','Boulevardier','불바르디에','199'],['Уайт леди','White Lady','화이트 레이디','199'],['Френч 75','French 75','프렌치 75','199'],['Маргарита','Margarita','마르가리타','199'],['Кловер Клаб','Clover Club','클로버 클럽','199'],['Лонг-Айленд Айс Ти','Long Island Iced Tea','롱 아일랜드 아이스티','209']]},
-  {ru:'Специальные коктейли',en:'Special Cocktails',ko:'스페셜 칵테일',items:[
-    ['Базил Маргарита','Basil Margarita','바질 마르가리타','219'],['Маракуйя Френч 75','Passion Fruit French 75','패션프루트 프렌치 75','219'],['Клубничный Негрони','Strawberry Negroni','딸기 네그로니','219'],['Манговый Дайкири','Mango Daiquiri','망고 다이키리','219'],['Апельсиновый Виски Сауэр','Orange Whiskey Sour','오렌지 위스키 사워','219']]},
-  {ru:'Микс-дринки',en:'Mixed Drinks',ko:'믹스 드링크',items:[
-    ['Виски и кола','Whiskey & Cola','위스키 콜라','159'],['Ром и кола','Rum & Cola','럼 콜라','159'],['Джин-тоник','Gin & Tonic','진토닉','159']]},
-  {ru:'Безалкогольные коктейли',en:'Non-Alcohol',ko:'무알코올',items:[
-    ['Лимонад манго-маракуйя','Mango Passion Lemonade','망고 패션 레모네이드','99'],['Малиново-яблочный физз','Raspberry Apple Fizz','라즈베리 애플 피즈','99'],['Клубнично-базиликовый лимонад','Strawberry Basil Lemonade','딸기 바질 레모네이드','99']]},
-  {ru:'Кофе',en:'Coffee',ko:'커피',items:[
-    ['Эспрессо','Espresso','에스프레소','49'],['Двойной эспрессо','Double Espresso','더블 에스프레소','89'],['Американо, холодный или горячий','Americano, Ice / Hot','아메리카노, 아이스 / 핫','49'],['Капучино, холодный или горячий','Cappuccino, Ice / Hot','카푸치노, 아이스 / 핫','59'],['Латте','Latte','라떼','59'],['Добавить сироп','Add Syrup','시럽 추가','19'],['Альтернативное молоко','Alternative Milk','대체 우유','9'],['Айс латте','Iced Latte','아이스 라떼','59'],['Айс кофе с сиропом','Iced Coffee with Syrup','시럽 아이스 커피','69']]},
-  {ru:'Безалкогольные напитки',en:'Soft Drinks',ko:'소프트 드링크',items:[
-    ['Кока-Кола','Coke','코카콜라','49'],['Спрайт','Sprite','스프라이트','49'],['Фанта','Fanta','환타','49'],['Тоник','Tonic','토닉','49'],['Имбирный эль','Ginger Ale','진저에일','49'],['Вода','Water','물','49'],['Ред Булл','Red Bull','레드불','79'],['Кока-Кола Зеро','Coca-Cola Zero','코카콜라 제로','49'],['Содовая','Soda Water','소다수','49']]},
-  {ru:'Пиво',en:'Beer',ko:'맥주',items:[
-    ['Tiger','Tiger','타이거','59'],['Heineken','Heineken','하이네켄','79'],['Sapporo','Sapporo','삿포로','99'],['Corona','Corona','코로나','99']]},
-  {ru:'Вино и игристое по бокалам',en:'Wine & Sparkling by the Glass',ko:'와인 & 스파클링, 글라스',items:[
-    ['Белое вино','White Wine','화이트 와인','169'],['Красное вино','Red Wine','레드 와인','169'],['Martini Prosecco','Martini Prosecco','마티니 프로세코','259'],['Игристое брют','Brut Sparkling Wine','브뤼 스파클링 와인','169']]},
-  {ru:'Водка, 50 мл / бутылка',en:'Vodka, 50 ml / bottle',ko:'보드카, 50ml / 병',items:[
-    ['Absolut','Absolut','앱솔루트','99 / 1199'],['Smirnoff','Smirnoff','스미르노프','99 / 1199']]},
-  {ru:'Виски, 50 мл / бутылка',en:'Whiskey, 50 ml / bottle',ko:'위스키, 50ml / 병',items:[
-    ['Jameson','Jameson','제임슨','119 / 1549'],['Jim Beam','Jim Beam','짐 빔','109 / 1549'],["Jack Daniel's","Jack Daniel's",'잭 다니엘스','119 / 1549'],['Johnnie Walker Black Label 12','Johnnie Walker Black Label 12','조니워커 블랙 라벨 12','149 / 1999'],['Johnnie Walker Red Label','Johnnie Walker Red Label','조니워커 레드 라벨','119 / 1549'],['Chivas Regal 12','Chivas Regal 12','시바스 리갈 12','149 / 1999'],["Ballantine's Finest","Ballantine's Finest",'발렌타인 파이니스트','119 / 1549']]},
-  {ru:'Ром, 50 мл / бутылка',en:'Rum, 50 ml / bottle',ko:'럼, 50ml / 병',items:[
-    ['Bacardi Carta Blanca','Bacardi Carta Blanca','바카디 카르타 블랑카','99 / 1199'],['Captain Morgan Dark','Captain Morgan Dark','캡틴 모건 다크','99 / 1199'],['Captain Morgan Spiced Gold','Captain Morgan Spiced Gold','캡틴 모건 스파이스드 골드','99 / 1199']]},
-  {ru:'Джин, 50 мл / бутылка',en:'Gin, 50 ml / bottle',ko:'진, 50ml / 병',items:[
-    ['Bombay Sapphire','Bombay Sapphire','봄베이 사파이어','119 / 1549'],["Gordon's London Dry Gin","Gordon's London Dry Gin",'고든스 런던 드라이 진','99 / 1199']]},
-  {ru:'Текила, 50 мл / бутылка',en:'Tequila, 50 ml / bottle',ko:'데킬라, 50ml / 병',items:[
-    ['Jose Cuervo Especial Silver','Jose Cuervo Especial Silver','호세 쿠에르보 에스페셜 실버','109 / 1549'],['Jose Cuervo Especial Gold','Jose Cuervo Especial Gold','호세 쿠에르보 에스페셜 골드','119 / 1549']]},
-  {ru:'Ликеры и дижестивы, 50 мл / бутылка',en:'Liqueurs & Digestifs, 50 ml / bottle',ko:'리큐어 & 다이제스티프, 50ml / 병',items:[
-    ['Baileys','Baileys','베일리스','119 / 1549'],['Kahlúa','Kahlúa','칼루아','119 / 1549'],['Malibu','Malibu','말리부','119 / 1549'],['Jägermeister','Jägermeister','예거마이스터','99 / 1199']]},
-  {ru:'Аперитивы и вермуты',en:'Aperitifs & Vermouths',ko:'아페리티프 & 베르무트',items:[
-    ['Aperol','Aperol','아페롤','119 / 1549'],['Campari','Campari','캄파리','119 / 1549'],['Martini Rosso','Martini Rosso','마티니 로쏘','119 / 1549'],['Martini Extra Dry','Martini Extra Dry','마티니 엑스트라 드라이','119 / 1549']]},
-  {ru:'Игристое вино',en:'Sparkling Wine',ko:'스파클링 와인',items:[
-    ['Martini Prosecco','Martini Prosecco','마티니 프로세코','119 / 1549'],['Martini Asti','Martini Asti','마티니 아스티','119 / 1549']]}
+const I=(ru,en,ko=en)=>({ru,en,ko});
+const data=[
+{ru:'Фирменные коктейли',en:'Signature Cocktails',ko:'시그니처 칵테일',items:[
+['Fresh Pick','Fresh Pick','프레시 픽','229',I('Белое вино, лайм, сироп Rosa, базилик, Sprite','White wine, lime, Rosa syrup, basil, Sprite','화이트 와인, 라임, 로사 시럽, 바질, 스프라이트')],
+['Aperol Gin-ie','Aperol Gin-ie','아페롤 진이','229',I('Фруктовая заготовка, джин, Aperol, лайм, сахарный сироп, мята','Fruit premix, gin, Aperol, lime, sugar syrup, mint','과일 프리믹스, 진, 아페롤, 라임, 슈가 시럽, 민트')],
+['Pick of Destiny','Pick of Destiny','픽 오브 데스티니','229',I('Белый ром, апельсин, лайм, клубничный сироп, мята, Midori','White rum, orange, lime, strawberry syrup, mint, Midori','화이트 럼, 오렌지, 라임, 딸기 시럽, 민트, 미도리')],
+['Picker','Picker','피커','229',I('Красный драгонфрут, Crème de Cacao, джин, сгущённое молоко','Red dragon fruit, Crème de Cacao, gin, condensed milk','레드 드래곤프루트, 크렘 드 카카오, 진, 연유')],
+['High Note','High Note','하이 노트','229',I('Фруктовая заготовка, ванильный сироп, джин, лайм, игристое','Fruit premix, vanilla syrup, gin, lime, sparkling wine','과일 프리믹스, 바닐라 시럽, 진, 라임, 스파클링 와인')]]},
+{ru:'Классические коктейли',en:'Classic Cocktails',ko:'클래식 칵테일',items:[
+['Negroni','Negroni','네그로니','199',I('Джин, Campari, Martini Rosso','Gin, Campari, Martini Rosso','진, 캄파리, 마티니 로쏘')],
+['Whiskey Sour','Whiskey Sour','위스키 사워','199',I('Бурбон, лимон, сахарный сироп, белок','Bourbon, lemon, sugar syrup, egg white','버번, 레몬, 슈가 시럽, 달걀흰자')],
+['Aperol Spritz','Aperol Spritz','아페롤 스프리츠','199',I('Игристое, Aperol, содовая','Sparkling wine, Aperol, soda','스파클링 와인, 아페롤, 소다')],
+['Mojito','Mojito','모히토','199',I('Белый ром, лайм, сахарный сироп, мята, содовая','White rum, lime, sugar syrup, mint, soda','화이트 럼, 라임, 슈가 시럽, 민트, 소다')],
+['Daiquiri','Daiquiri','다이키리','199',I('Белый ром, лайм, сахарный сироп','White rum, lime, sugar syrup','화이트 럼, 라임, 슈가 시럽')],
+['Old Fashioned','Old Fashioned','올드 패션드','199',I('Бурбон, сахарный сироп, Angostura','Bourbon, sugar syrup, Angostura','버번, 슈가 시럽, 앙고스투라')],
+['Boulevardier','Boulevardier','불바르디에','199',I('Бурбон, Campari, Martini Rosso','Bourbon, Campari, Martini Rosso','버번, 캄파리, 마티니 로쏘')],
+['White Lady','White Lady','화이트 레이디','199',I('Джин, Triple Sec, лимон, сахарный сироп','Gin, Triple Sec, lemon, sugar syrup','진, 트리플 섹, 레몬, 슈가 시럽')],
+['French 75','French 75','프렌치 75','199',I('Джин, лимон, сахарный сироп, игристое','Gin, lemon, sugar syrup, sparkling wine','진, 레몬, 슈가 시럽, 스파클링 와인')],
+['Margarita','Margarita','마르가리타','199',I('Текила, Triple Sec, лайм, сахарный сироп','Tequila, Triple Sec, lime, sugar syrup','데킬라, 트리플 섹, 라임, 슈가 시럽')],
+['Clover Club','Clover Club','클로버 클럽','199',I('Джин, малиновый сироп, лимон, белок','Gin, raspberry syrup, lemon, egg white','진, 라즈베리 시럽, 레몬, 달걀흰자')],
+['Long Island Iced Tea','Long Island Iced Tea','롱 아일랜드 아이스티','209',I('Водка, джин, ром, текила, Triple Sec, лимон, сироп, Coca-Cola','Vodka, gin, rum, tequila, Triple Sec, lemon, syrup, Coca-Cola','보드카, 진, 럼, 데킬라, 트리플 섹, 레몬, 시럽, 코카콜라')]]},
+{ru:'Специальные коктейли',en:'Special Cocktails',ko:'스페셜 칵테일',items:[
+['Basil Margarita','Basil Margarita','바질 마르가리타','219',I('Текила, Triple Sec, лайм, сахарный сироп, базилик','Tequila, Triple Sec, lime, sugar syrup, basil','데킬라, 트리플 섹, 라임, 슈가 시럽, 바질')],
+['Passion Fruit French 75','Passion Fruit French 75','패션프루트 프렌치 75','219',I('Джин, маракуйя, лимон, сахарный сироп, игристое','Gin, passion fruit, lemon, sugar syrup, sparkling wine','진, 패션프루트, 레몬, 슈가 시럽, 스파클링 와인')],
+['Strawberry Negroni','Strawberry Negroni','딸기 네그로니','219',I('Джин, Campari, Martini Rosso, клубничный сироп','Gin, Campari, Martini Rosso, strawberry syrup','진, 캄파리, 마티니 로쏘, 딸기 시럽')],
+['Mango Daiquiri','Mango Daiquiri','망고 다이키리','219',I('Белый ром, манго, лайм, сахарный сироп','White rum, mango, lime, sugar syrup','화이트 럼, 망고, 라임, 슈가 시럽')],
+['Grapefruit Whiskey Sour','Grapefruit Whiskey Sour','자몽 위스키 사워','219',I('Виски, грейпфрут, лимон, сахарный сироп, белок, Angostura','Whiskey, grapefruit, lemon, sugar syrup, egg white, Angostura','위스키, 자몽, 레몬, 슈가 시럽, 달걀흰자, 앙고스투라')]]},
+{ru:'Микс-дринки',en:'Mixed Drinks',ko:'믹스 드링크',items:[
+['Whiskey & Cola','Whiskey & Cola','위스키 콜라','159',I('Виски, Coca-Cola, лайм','Whiskey, Coca-Cola, lime','위스키, 코카콜라, 라임')],['Rum & Cola','Rum & Cola','럼 콜라','159',I('Ром, Coca-Cola, лайм','Rum, Coca-Cola, lime','럼, 코카콜라, 라임')],['Gin & Tonic','Gin & Tonic','진토닉','159',I('Джин, тоник, лайм','Gin, tonic, lime','진, 토닉, 라임')]]},
+{ru:'Безалкогольные коктейли',en:'Non-Alcohol',ko:'무알코올',items:[
+['Mango Passion Lemonade','Mango Passion Lemonade','망고 패션 레모네이드','99',I('Манго-маракуйя, лайм, сахарный сироп, содовая, мята','Mango-passion fruit, lime, sugar syrup, soda, mint','망고-패션프루트, 라임, 슈가 시럽, 소다, 민트')],
+['Raspberry Apple Fizz','Raspberry Apple Fizz','라즈베리 애플 피즈','99',I('Малина, яблочный сок, лимон, сахарный сироп, содовая','Raspberry, apple juice, lemon, sugar syrup, soda','라즈베리, 사과 주스, 레몬, 슈가 시럽, 소다')],
+['Strawberry Basil Lemonade','Strawberry Basil Lemonade','딸기 바질 레모네이드','99',I('Клубника-базилик, лайм, сахарный сироп, содовая','Strawberry-basil, lime, sugar syrup, soda','딸기-바질, 라임, 슈가 시럽, 소다')]]},
+{ru:'Кофе',en:'Coffee',ko:'커피',items:[['Espresso','Espresso','에스프레소','49'],['Double Espresso','Double Espresso','더블 에스프레소','89'],['Americano — Ice / Hot','Americano — Ice / Hot','아메리카노 — 아이스 / 핫','49'],['Cappuccino — Ice / Hot','Cappuccino — Ice / Hot','카푸치노 — 아이스 / 핫','59'],['Latte','Latte','라떼','59'],['Add Syrup','Add Syrup','시럽 추가','19'],['Alternative Milk','Alternative Milk','대체 우유','9'],['Iced Latte','Iced Latte','아이스 라떼','59'],['Iced Coffee with Syrup','Iced Coffee with Syrup','시럽 아이스 커피','69']]},
+{ru:'Безалкогольные напитки',en:'Soft Drinks',ko:'소프트 드링크',items:[['Coke','Coke','코카콜라','49'],['Sprite','Sprite','스프라이트','49'],['Fanta','Fanta','환타','49'],['Tonic','Tonic','토닉','49'],['Ginger Ale','Ginger Ale','진저에일','49'],['Water','Water','물','49'],['Red Bull','Red Bull','레드불','79'],['Coca-Cola Zero','Coca-Cola Zero','코카콜라 제로','49'],['Soda Water','Soda Water','소다수','49']]},
+{ru:'Пиво',en:'Beer',ko:'맥주',items:[['Tiger','Tiger','타이거','59'],['Heineken','Heineken','하이네켄','79'],['Sapporo','Sapporo','삿포로','99'],['Corona','Corona','코로나','99']]},
+{ru:'Вино и игристое по бокалам',en:'Wine & Sparkling by the Glass',ko:'와인 & 스파클링, 글라스',items:[['White Wine','White Wine','화이트 와인','169'],['Red Wine','Red Wine','레드 와인','169'],['Martini Prosecco','Martini Prosecco','마티니 프로세코','259'],['Brut Sparkling Wine','Brut Sparkling Wine','브뤼 스파클링 와인','169']]},
+{ru:'Водка, 50 мл / бутылка',en:'Vodka, 50 ml / bottle',ko:'보드카, 50ml / 병',items:[['Absolut','Absolut','앱솔루트','99 / 1199'],['Smirnoff','Smirnoff','스미르노프','99 / 1199']]},
+{ru:'Виски, 50 мл / бутылка',en:'Whiskey, 50 ml / bottle',ko:'위스키, 50ml / 병',items:[['Jameson','Jameson','제임슨','119 / 1549'],['Jim Beam','Jim Beam','짐 빔','109 / 1549'],["Jack Daniel's","Jack Daniel's",'잭 다니엘스','119 / 1549'],['Johnnie Walker Black Label 12','Johnnie Walker Black Label 12','조니워커 블랙 라벨 12','149 / 1999'],['Johnnie Walker Red Label','Johnnie Walker Red Label','조니워커 레드 라벨','119 / 1549'],['Chivas Regal 12','Chivas Regal 12','시바스 리갈 12','149 / 1999'],["Ballantine's Finest","Ballantine's Finest",'발렌타인 파이니스트','119 / 1549']]},
+{ru:'Ром, 50 мл / бутылка',en:'Rum, 50 ml / bottle',ko:'럼, 50ml / 병',items:[['Bacardi Carta Blanca','Bacardi Carta Blanca','바카디 카르타 블랑카','99 / 1199'],['Captain Morgan Dark','Captain Morgan Dark','캡틴 모건 다크','99 / 1199'],['Captain Morgan Spiced Gold','Captain Morgan Spiced Gold','캡틴 모건 스파이스드 골드','99 / 1199']]},
+{ru:'Джин, 50 мл / бутылка',en:'Gin, 50 ml / bottle',ko:'진, 50ml / 병',items:[['Bombay Sapphire','Bombay Sapphire','봄베이 사파이어','119 / 1549'],["Gordon's London Dry Gin","Gordon's London Dry Gin",'고든스 런던 드라이 진','99 / 1199']]},
+{ru:'Текила, 50 мл / бутылка',en:'Tequila, 50 ml / bottle',ko:'데킬라, 50ml / 병',items:[['Jose Cuervo Especial Silver','Jose Cuervo Especial Silver','호세 쿠에르보 에스페셜 실버','109 / 1549'],['Jose Cuervo Especial Gold','Jose Cuervo Especial Gold','호세 쿠에르보 에스페셜 골드','119 / 1549']]},
+{ru:'Ликеры и дижестивы, 50 мл / бутылка',en:'Liqueurs & Digestifs, 50 ml / bottle',ko:'리큐어 & 다이제스티프, 50ml / 병',items:[['Baileys','Baileys','베일리스','119 / 1549'],['Kahlúa','Kahlúa','칼루아','119 / 1549'],['Malibu','Malibu','말리부','119 / 1549'],['Jägermeister','Jägermeister','예거마이스터','99 / 1199']]},
+{ru:'Аперитивы и вермуты',en:'Aperitifs & Vermouths',ko:'아페리티프 & 베르무트',items:[['Aperol','Aperol','아페롤','119 / 1549'],['Campari','Campari','캄파리','119 / 1549'],['Martini Rosso','Martini Rosso','마티니 로쏘','119 / 1549'],['Martini Extra Dry','Martini Extra Dry','마티니 엑스트라 드라이','119 / 1549']]},
+{ru:'Игристое вино',en:'Sparkling Wine',ko:'스파클링 와인',items:[['Martini Prosecco','Martini Prosecco','마티니 프로세코','119 / 1549'],['Martini Asti','Martini Asti','마티니 아스티','119 / 1549']]}
 ];
 let lang='en';
-const labels={ru:{tag:'Lounge Bar · Нячанг',foot:'Цены указаны в тысячах VND'},en:{tag:'Lounge Bar · Nha Trang',foot:'Prices in thousands of VND'},ko:{tag:'라운지 바 · 나트랑',foot:'가격은 천 VND 단위입니다'}};
-function render(){
-  document.documentElement.lang=lang;
-  document.getElementById('footer').textContent=labels[lang].foot;
-  document.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
-  document.getElementById('menu').innerHTML=data.map(s=>`<section class="section"><h2>${s[lang]}</h2><div class="card">${s.items.map(i=>`<div class="item"><div class="name">${i[lang==='ru'?0:lang==='en'?1:2]}</div><div class="price">${i[3]}</div></div>`).join('')}</div></section>`).join('');
-}
-document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.lang;render()}));
-render();
+const labels={ru:'Цены указаны в тысячах VND',en:'Prices in thousands of VND',ko:'가격은 천 VND 단위입니다'};
+function render(){document.documentElement.lang=lang;document.getElementById('footer').textContent=labels[lang];document.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));document.getElementById('menu').innerHTML=data.map(s=>`<section class="section"><h2>${s[lang]}</h2><div class="card">${s.items.map(i=>`<div class="item"><div class="item-main"><div class="name">${i[lang==='ko'?2:1]}</div>${i[4]?`<div class="ingredients">${i[4][lang]}</div>`:''}</div><div class="price">${i[3]}</div></div>`).join('')}</div></section>`).join('')}
+document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.lang;render()}));render();
 </script>
 </body>
 </html>
