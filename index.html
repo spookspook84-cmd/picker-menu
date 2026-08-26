@@ -101,13 +101,17 @@ const data=[
 ['French 75','French 75','프렌치 75','199',I('Джин, лимон, сахарный сироп, игристое вино','Gin, lemon, sugar syrup, sparkling wine','진, 레몬, 슈가 시럽, 스파클링 와인')],
 ['Margarita','Margarita','마르가리타','199',I('Текила, Трипл-сек, лайм, сахарный сироп','Tequila, Triple Sec, lime, sugar syrup','데킬라, 트리플 섹, 라임, 슈가 시럽')],
 ['Clover Club','Clover Club','클로버 클럽','199',I('Джин, малиновый сироп, лимон, яичный белок','Gin, raspberry syrup, lemon, egg white','진, 라즈베리 시럽, 레몬, 달걀흰자')],
-['Long Island Iced Tea','Long Island Iced Tea','롱 아일랜드 아이스티','209',I('Водка, джин, ром, текила, Трипл-сек, лимон, сахарный сироп, Кока-Кола','Vodka, gin, rum, tequila, Triple Sec, lemon, sugar syrup, Coca-Cola','보드카, 진, 럼, 데킬라, 트리플 섹, 레몬, 슈가 시럽, 코카콜라')]]},
+['Long Island Iced Tea','Long Island Iced Tea','롱 아일랜드 아이스티','209',I('Водка, джин, ром, текила, Трипл-сек, лимон, сахарный сироп, Кока-Кола','Vodka, gin, rum, tequila, Triple Sec, lemon, sugar syrup, Coca-Cola','보드카, 진, 럼, 데킬라, 트리플 섹, 레몬, 슈가 시럽, 코카콜라')],
+['Porn Star Martini','Porn Star Martini','폰 스타 마티니','199',I('Водка, просекко, ванильный сироп, пюре маракуйи','Vodka, Prosecco, vanilla syrup, passion fruit puree','보드카, 프로세코, 바닐라 시럽, 패션프루트 퓌레')]]},
 {ru:'Специальные коктейли',en:'Special Cocktails',ko:'스페셜 칵테일',items:[
 ['Basil Margarita','Basil Margarita','바질 마르가리타','219',I('Текила, Трипл-сек, лайм, сахарный сироп, базилик','Tequila, Triple Sec, lime, sugar syrup, basil','데킬라, 트리플 섹, 라임, 슈가 시럽, 바질')],
 ['Passion Fruit French 75','Passion Fruit French 75','패션프루트 프렌치 75','219',I('Джин, маракуйя, лимон, сахарный сироп, игристое вино','Gin, passion fruit, lemon, sugar syrup, sparkling wine','진, 패션프루트, 레몬, 슈가 시럽, 스파클링 와인')],
 ['Strawberry Negroni','Strawberry Negroni','딸기 네그로니','219',I('Джин, Кампари, Мартини Россо, клубничный сироп','Gin, Campari, Martini Rosso, strawberry syrup','진, 캄파리, 마티니 로쏘, 딸기 시럽')],
 ['Mango Daiquiri','Mango Daiquiri','망고 다이키리','219',I('Белый ром, манго, лайм, сахарный сироп','White rum, mango, lime, sugar syrup','화이트 럼, 망고, 라임, 슈가 시럽')],
-['Orange Whiskey Sour','Orange Whiskey Sour','오렌지 위스키 사워','219',I('Виски, апельсин, лимон, сахарный сироп, яичный белок, Ангостура','Whiskey, orange, lemon, sugar syrup, egg white, Angostura','위스키, 오렌지, 레몬, 슈가 시럽, 달걀흰자, 앙고스투라')]]},
+['Orange Whiskey Sour','Orange Whiskey Sour','오렌지 위스키 사워','219',I('Виски, апельсин, лимон, сахарный сироп, яичный белок, Ангостура','Whiskey, orange, lemon, sugar syrup, egg white, Angostura','위스키, 오렌지, 레몬, 슈가 시럽, 달걀흰자, 앙고스투라')],
+['Зелёный огонь','Green Ember','그린 엠버','219',I('ПФ лемонграсс-лайм, лаймовый фреш, джин, джинджер-эль','Lemongrass-lime prep, fresh lime, gin, ginger ale','레몬그라스 라임 프렙, 라임 주스, 진, 진저에일')],
+['Пряный ананасовый физз','Spiced Pineapple Fizz','스파이스드 파인애플 피즈','219',I('ПФ ананас-корица-лемонграсс, лимонный фреш, пряный ром, минеральная вода','Pineapple-cinnamon-lemongrass prep, fresh lemon, spiced rum, sparkling water','파인애플 시나몬 레몬그라스 프렙, 레몬 주스, 스파이스드 럼, 탄산수')],
+['Персик-маракуйя с пеной','Peach Passion Cloud','피치 패션 클라우드','',I('Bols Peach, ПФ молочная кислота, джин, фруктовая заготовка №1, ПФ пена маракуйя-манго','Bols Peach, lactic acid prep, gin, fruit prep No. 1, passion fruit-mango foam','볼스 피치, 젖산 프렙, 진, 과일 프렙 1번, 패션프루트 망고 폼')]]},
 {ru:'Шоты',en:'Shots',ko:'샷',items:[
 ['Neon Layer','Neon Layer','네온 레이어','69',I('Клубничный сироп, Midori, белый ром','Strawberry syrup, Midori, white rum','딸기 시럽, 미도리, 화이트 럼')],
 ['Vanilla Cut','Vanilla Cut','바닐라 컷','69',I('Ванильный сироп, лаймовый фреш, джин','Vanilla syrup, fresh lime, gin','바닐라 시럽, 라임 주스, 진')],
@@ -121,7 +125,9 @@ const data=[
 {ru:'Безалкогольные коктейли',en:'Non-Alcohol',ko:'무알코올',items:[
 ['Mango Passion Lemonade','Mango Passion Lemonade','망고 패션 레모네이드','99',I('Манго, маракуйя, лайм, сахарный сироп, содовая, мята','Mango, passion fruit, lime, sugar syrup, soda, mint','망고, 패션프루트, 라임, 슈가 시럽, 소다, 민트')],
 ['Raspberry Apple Fizz','Raspberry Apple Fizz','라즈베리 애플 피즈','99',I('Малина, яблочный сок, лимон, сахарный сироп, содовая','Raspberry, apple juice, lemon, sugar syrup, soda','라즈베리, 사과 주스, 레몬, 슈가 시럽, 소다')],
-['Strawberry Basil Lemonade','Strawberry Basil Lemonade','딸기 바질 레모네이드','99',I('Клубника, базилик, лайм, сахарный сироп, содовая','Strawberry, basil, lime, sugar syrup, soda','딸기, 바질, 라임, 슈가 시럽, 소다')]]},
+['Strawberry Basil Lemonade','Strawberry Basil Lemonade','딸기 바질 레모네이드','99',I('Клубника, базилик, лайм, сахарный сироп, содовая','Strawberry, basil, lime, sugar syrup, soda','딸기, 바질, 라임, 슈가 시럽, 소다')],
+['Лайм-имбирный физз','Lime Ginger Fizz','라임 진저 피즈','99',I('ПФ лемонграсс-лайм, лаймовый фреш, джинджер-эль','Lemongrass-lime prep, fresh lime, ginger ale','레몬그라스 라임 프렙, 라임 주스, 진저에일')],
+['Тропический лимонад с корицей','Cinnamon Tropical Lemonade','시나몬 트로피컬 레모네이드','99',I('ПФ ананас-корица-лемонграсс, лимонный фреш, минеральная вода','Pineapple-cinnamon-lemongrass prep, fresh lemon, sparkling water','파인애플 시나몬 레몬그라스 프렙, 레몬 주스, 탄산수')]]},
 {ru:'Кофе',en:'Coffee',ko:'커피',items:[
 ['Эспрессо','Espresso','에스프레소','49'],['Двойной эспрессо','Double Espresso','더블 에스프레소','89'],['Американо — холодный / горячий','Americano — Ice / Hot','아메리카노 — 아이스 / 핫','49'],['Капучино — холодный / горячий','Cappuccino — Ice / Hot','카푸치노 — 아이스 / 핫','59'],['Латте','Latte','라떼','59'],['Добавить сироп','Add Syrup','시럽 추가','19'],['Альтернативное молоко','Alternative Milk','대체 우유','9'],['Айс-латте','Iced Latte','아이스 라떼','59'],['Айс-кофе с сиропом','Iced Coffee with Syrup','시럽 아이스 커피','69'],['Espresso Tonic','Espresso Tonic','에스프레소 토닉','',I('Эспрессо, тоник, апельсиновая цедра, ванильный сироп','Espresso, tonic, orange zest, vanilla syrup','에스프레소, 토닉, 오렌지 제스트, 바닐라 시럽')]]},
 {ru:'Безалкогольные напитки',en:'Soft Drinks',ko:'소프트 드링크',items:[
