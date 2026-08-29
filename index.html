@@ -14,7 +14,7 @@
     body{margin:0;min-height:100vh;font-family:"Roboto Condensed","Noto Sans KR",system-ui,sans-serif;color:var(--text);background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.92)),radial-gradient(circle at 18% 12%,rgba(255,0,43,.3),transparent 26%),url("assets/picker-bg.jpg") center top/cover no-repeat fixed,#050505}
     body::before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.74),rgba(0,0,0,.18) 44%,rgba(0,0,0,.84));z-index:-1}
     .wrap{max-width:820px;margin:auto;padding:18px 14px 58px}.hero{text-align:center;padding:10px 0 4px}.brand-logo{display:block;width:min(190px,46vw);height:auto;margin:auto;border-radius:50%;filter:drop-shadow(0 0 22px rgba(255,0,43,.44)) drop-shadow(0 16px 32px rgba(0,0,0,.65))}
-    .langs{display:flex;gap:8px;justify-content:center;position:sticky;top:8px;z-index:20;width:max-content;max-width:100%;margin:14px auto 0;padding:7px;border:1px solid rgba(255,255,255,.15);background:rgba(8,3,4,.72);box-shadow:0 14px 34px rgba(0,0,0,.32);backdrop-filter:blur(18px)}
+    .controls{position:sticky;top:8px;z-index:20;width:max-content;max-width:100%;margin:14px auto 0;padding:7px;border:1px solid rgba(255,255,255,.15);background:rgba(8,3,4,.72);box-shadow:0 14px 34px rgba(0,0,0,.32);backdrop-filter:blur(18px)}.langs,.menu-nav{display:flex;gap:8px;justify-content:center}.menu-nav{margin-top:6px}.menu-nav a{min-width:92px;padding:8px 12px;text-align:center;border:1px solid rgba(255,255,255,.18);color:#fff;text-decoration:none;font-family:"Tektur","Noto Sans KR",sans-serif;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.04)}.menu-nav a:hover{background:linear-gradient(135deg,#ff314d,#b90020);border-color:transparent}
     button{border:0;background:transparent;color:#e8e8e8;padding:10px 14px;font-family:"Tektur","Noto Sans KR",sans-serif;font-weight:800;cursor:pointer}button.active{background:linear-gradient(135deg,#ff314d,#b90020);color:#fff}
     .section{margin-top:18px}.section h2{font-size:14px;font-family:"Tektur","Noto Sans KR",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#fff;margin:0 0 9px 4px;display:flex;align-items:center;gap:10px}.section h2::before{content:"";width:28px;height:3px;background:linear-gradient(90deg,var(--accent-soft),transparent)}
     .card{overflow:hidden;border:1px solid rgba(255,255,255,.12);background:linear-gradient(145deg,rgba(255,49,77,.1),rgba(255,255,255,.018)),var(--panel);box-shadow:0 18px 46px rgba(0,0,0,.34);backdrop-filter:blur(13px) saturate(125%)}
@@ -75,7 +75,7 @@
 <div class="loader" aria-hidden="true"><img src="assets/picker-logo.jpg" alt=""></div>
 <div class="wrap">
   <header class="hero"><img class="brand-logo" src="assets/picker-logo.jpg" alt="Picker"></header>
-  <div class="langs"><button data-lang="ru">Русский</button><button data-lang="en" class="active">English</button><button data-lang="ko">한국어</button></div>
+  <div class="controls"><div class="langs"><button data-lang="ru">Русский</button><button data-lang="en" class="active">English</button><button data-lang="ko">한국어</button></div><nav class="menu-nav"><a href="#bar" id="bar-link">Bar</a><a href="#food" id="food-link">Food</a></nav></div>
   <main id="menu"></main><footer id="footer">Prices in thousands of VND</footer>
 </div>
 <script>
@@ -109,9 +109,9 @@ const data=[
 ['Strawberry Negroni','Strawberry Negroni','딸기 네그로니','219',I('Джин, Кампари, Мартини Россо, клубничный сироп','Gin, Campari, Martini Rosso, strawberry syrup','진, 캄파리, 마티니 로쏘, 딸기 시럽')],
 ['Mango Daiquiri','Mango Daiquiri','망고 다이키리','219',I('Белый ром, манго, лайм, сахарный сироп','White rum, mango, lime, sugar syrup','화이트 럼, 망고, 라임, 슈가 시럽')],
 ['Orange Whiskey Sour','Orange Whiskey Sour','오렌지 위스키 사워','219',I('Виски, апельсин, лимон, сахарный сироп, яичный белок, Ангостура','Whiskey, orange, lemon, sugar syrup, egg white, Angostura','위스키, 오렌지, 레몬, 슈가 시럽, 달걀흰자, 앙고스투라')],
-['Зелёный огонь','Green Ember','그린 엠버','219',I('ПФ лемонграсс-лайм, лаймовый фреш, джин, джинджер-эль','Lemongrass-lime prep, fresh lime, gin, ginger ale','레몬그라스 라임 프렙, 라임 주스, 진, 진저에일')],
-['Пряный ананасовый физз','Spiced Pineapple Fizz','스파이스드 파인애플 피즈','219',I('ПФ ананас-корица-лемонграсс, лимонный фреш, пряный ром, минеральная вода','Pineapple-cinnamon-lemongrass prep, fresh lemon, spiced rum, sparkling water','파인애플 시나몬 레몬그라스 프렙, 레몬 주스, 스파이스드 럼, 탄산수')],
-['Персик-маракуйя с пеной','Peach Passion Cloud','피치 패션 클라우드','',I('Bols Peach, ПФ молочная кислота, джин, фруктовая заготовка №1, ПФ пена маракуйя-манго','Bols Peach, lactic acid prep, gin, fruit prep No. 1, passion fruit-mango foam','볼스 피치, 젖산 프렙, 진, 과일 프렙 1번, 패션프루트 망고 폼')]]},
+['Green Ember','Green Ember','그린 엠버','219',I('ПФ лемонграсс-лайм, лаймовый фреш, джин, джинджер-эль','Lemongrass-lime prep, fresh lime, gin, ginger ale','레몬그라스 라임 프렙, 라임 주스, 진, 진저에일')],
+['Spiced Pineapple Fizz','Spiced Pineapple Fizz','스파이스드 파인애플 피즈','219',I('ПФ ананас-корица-лемонграсс, лимонный фреш, пряный ром, минеральная вода','Pineapple-cinnamon-lemongrass prep, fresh lemon, spiced rum, sparkling water','파인애플 시나몬 레몬그라스 프렙, 레몬 주스, 스파이스드 럼, 탄산수')],
+['Peach Passion Cloud','Peach Passion Cloud','피치 패션 클라우드','',I('Bols Peach, ПФ молочная кислота, джин, фруктовая заготовка №1, ПФ пена маракуйя-манго','Bols Peach, lactic acid prep, gin, fruit prep No. 1, passion fruit-mango foam','볼스 피치, 젖산 프렙, 진, 과일 프렙 1번, 패션프루트 망고 폼')]]},
 {ru:'Шоты',en:'Shots',ko:'샷',items:[
 ['Neon Layer','Neon Layer','네온 레이어','69',I('Клубничный сироп, Midori, белый ром','Strawberry syrup, Midori, white rum','딸기 시럽, 미도리, 화이트 럼')],
 ['Vanilla Cut','Vanilla Cut','바닐라 컷','69',I('Ванильный сироп, лаймовый фреш, джин','Vanilla syrup, fresh lime, gin','바닐라 시럽, 라임 주스, 진')],
@@ -126,17 +126,17 @@ const data=[
 ['Mango Passion Lemonade','Mango Passion Lemonade','망고 패션 레모네이드','99',I('Манго, маракуйя, лайм, сахарный сироп, содовая, мята','Mango, passion fruit, lime, sugar syrup, soda, mint','망고, 패션프루트, 라임, 슈가 시럽, 소다, 민트')],
 ['Raspberry Apple Fizz','Raspberry Apple Fizz','라즈베리 애플 피즈','99',I('Малина, яблочный сок, лимон, сахарный сироп, содовая','Raspberry, apple juice, lemon, sugar syrup, soda','라즈베리, 사과 주스, 레몬, 슈가 시럽, 소다')],
 ['Strawberry Basil Lemonade','Strawberry Basil Lemonade','딸기 바질 레모네이드','99',I('Клубника, базилик, лайм, сахарный сироп, содовая','Strawberry, basil, lime, sugar syrup, soda','딸기, 바질, 라임, 슈가 시럽, 소다')],
-['Лайм-имбирный физз','Lime Ginger Fizz','라임 진저 피즈','99',I('ПФ лемонграсс-лайм, лаймовый фреш, джинджер-эль','Lemongrass-lime prep, fresh lime, ginger ale','레몬그라스 라임 프렙, 라임 주스, 진저에일')],
-['Тропический лимонад с корицей','Cinnamon Tropical Lemonade','시나몬 트로피컬 레모네이드','99',I('ПФ ананас-корица-лемонграсс, лимонный фреш, минеральная вода','Pineapple-cinnamon-lemongrass prep, fresh lemon, sparkling water','파인애플 시나몬 레몬그라스 프렙, 레몬 주스, 탄산수')]]},
+['Lime Ginger Fizz','Lime Ginger Fizz','라임 진저 피즈','99',I('ПФ лемонграсс-лайм, лаймовый фреш, джинджер-эль','Lemongrass-lime prep, fresh lime, ginger ale','레몬그라스 라임 프렙, 라임 주스, 진저에일')],
+['Cinnamon Tropical Lemonade','Cinnamon Tropical Lemonade','시나몬 트로피컬 레모네이드','99',I('ПФ ананас-корица-лемонграсс, лимонный фреш, минеральная вода','Pineapple-cinnamon-lemongrass prep, fresh lemon, sparkling water','파인애플 시나몬 레몬그라스 프렙, 레몬 주스, 탄산수')]]},
 {ru:'Кофе',en:'Coffee',ko:'커피',items:[
-['Эспрессо','Espresso','에스프레소','49'],['Двойной эспрессо','Double Espresso','더블 에스프레소','89'],['Американо — холодный / горячий','Americano — Ice / Hot','아메리카노 — 아이스 / 핫','49'],['Капучино — холодный / горячий','Cappuccino — Ice / Hot','카푸치노 — 아이스 / 핫','59'],['Латте','Latte','라떼','59'],['Добавить сироп','Add Syrup','시럽 추가','19'],['Альтернативное молоко','Alternative Milk','대체 우유','9'],['Айс-латте','Iced Latte','아이스 라떼','59'],['Айс-кофе с сиропом','Iced Coffee with Syrup','시럽 아이스 커피','69'],['Espresso Tonic','Espresso Tonic','에스프레소 토닉','',I('Эспрессо, тоник, апельсиновая цедра, ванильный сироп','Espresso, tonic, orange zest, vanilla syrup','에스프레소, 토닉, 오렌지 제스트, 바닐라 시럽')]]},
+['Эспрессо','Espresso','에스프레소','49'],['Двойной эспрессо','Double Espresso','더블 에스프레소','89'],['Американо — холодный / горячий','Americano — Ice / Hot','아메리카노 — 아이스 / 핫','49'],['Капучино — холодный / горячий','Cappuccino — Ice / Hot','카푸치노 — 아이스 / 핫','59'],['Латте','Latte','라떼','59'],['Добавить сироп','Add Syrup','시럽 추가','19'],['Альтернативное молоко','Alternative Milk','대체 우유','9'],['Айс-латте','Iced Latte','아이스 라떼','59'],['Айс-кофе с сиропом','Iced Coffee with Syrup','시럽 아이스 커피','69'],['Espresso Tonic','Espresso Tonic','에스프레소 토닉','69',I('Эспрессо, тоник, апельсиновая цедра, ванильный сироп','Espresso, tonic, orange zest, vanilla syrup','에스프레소, 토닉, 오렌지 제스트, 바닐라 시럽')]]},
 {ru:'Безалкогольные напитки',en:'Soft Drinks',ko:'소프트 드링크',items:[
 ['Кока-Кола','Coke','코카콜라','49'],['Спрайт','Sprite','스프라이트','49'],['Фанта','Fanta','환타','49'],['Тоник','Tonic','토닉','49'],['Имбирный эль','Ginger Ale','진저에일','49'],['Вода','Water','물','49'],['Ред Булл','Red Bull','레드불','79'],['Кока-Кола Зеро','Coca-Cola Zero','코카콜라 제로','49'],['Содовая','Soda Water','소다수','49']]},
 {ru:'Пиво',en:'Beer',ko:'맥주',items:[
   ['Tiger','Tiger','타이거','59'],
   ['Heineken','Heineken','하이네켄','79'],
-  ['Sapporo Craft — светлое 0.4 л','Sapporo Craft — Lager 0.4 L','삿포로 크래프트 — 라거 0.4L','109'],
-  ['Sapporo Craft — тёмное 0.4 л','Sapporo Craft — Dark 0.4 L','삿포로 크래프트 — 다크 0.4L','139'],
+  ['Sapporo Craft — светлое 0.4 л','Sapporo Craft — Lager 0.4 L','삿포로 크래프트 — 라거 0.4L','89'],
+  ['Sapporo Craft — тёмное 0.4 л','Sapporo Craft — Dark 0.4 L','삿포로 크래프트 — 다크 0.4L','89'],
   ['Corona','Corona','코로나','99']
 ]},{ru:'Вино и игристое',en:'Wine & Sparkling',ko:'와인 & 스파클링',items:[['Белое вино','White Wine','화이트 와인','169'],['Красное вино','Red Wine','레드 와인','169'],['Martini Prosecco','Martini Prosecco','마티니 프로세코','259 / 1549'],['Martini Asti','Martini Asti','마티니 아스티','259 / 1549'],['Игристое брют','Brut Sparkling Wine','브뤼 스파클링 와인','169']]},
 {ru:'Водка, 50 мл / бутылка',en:'Vodka, 50 ml / bottle',ko:'보드카, 50ml / 병',items:[['Absolut','Absolut','앱솔루트','99 / 1199'],['Smirnoff','Smirnoff','스미르노프','99 / 1199']]},
@@ -147,13 +147,30 @@ const data=[
 {ru:'Ликёры и дижестивы, 50 мл / бутылка',en:'Liqueurs & Digestifs, 50 ml / bottle',ko:'리큐어 & 다이제스티프, 50ml / 병',items:[['Baileys','Baileys','베일리스','119 / 1549'],['Kahlúa','Kahlúa','칼루아','119 / 1549'],['Malibu','Malibu','말리부','119 / 1549'],['Jägermeister','Jägermeister','예거마이스터','99 / 1199']]},
 {ru:'Аперитивы и вермуты',en:'Aperitifs & Vermouths',ko:'아페리티프 & 베르무트',items:[['Aperol','Aperol','아페롤','119 / 1549'],['Campari','Campari','캄파리','119 / 1549'],['Martini Rosso','Martini Rosso','마티니 로쏘','119 / 1549'],['Martini Extra Dry','Martini Extra Dry','마티니 엑스트라 드라이','119 / 1549']]},
 ];
+const foodData=[
+{ru:'Еда',en:'Food',ko:'음식',items:[
+['Картофель фри','French Fries','감자튀김','79'],
+['Картофель фри с сыром пармезан','French Fries with Parmesan','파마산 치즈 감자튀김','109'],
+['Куриные наггетсы','Chicken Nuggets','치킨 너겟','109'],
+['Фруктовая тарелка сезонная','Seasonal Fruit Platter','제철 과일 플래터','349'],
+['Пивная тарелка','Beer Platter','맥주 플래터','400']]},
+{ru:'Закуски',en:'Snacks',ko:'스낵',items:[
+['Сыр чечил','Chechil Cheese','체칠 치즈','99'],
+['Чипсы в ассортименте','Assorted Chips','모둠 칩','59'],
+['Фисташки','Pistachios','피스타치오','99'],
+['Сушёные кальмары','Dried Squid','말린 오징어','109'],
+['Сушёные анчоусы','Dried Anchovies','말린 멸치','99']]}
+];
 let lang='en';
-const labels={ru:{foot:'Цены указаны в тысячах донгов'},en:{foot:'Prices in thousands of VND'},ko:{foot:'가격은 천 VND 단위입니다'}};
+const labels={ru:{foot:'Цены указаны в тысячах донгов',bar:'Бар',food:'Еда'},en:{foot:'Prices in thousands of VND',bar:'Bar',food:'Food'},ko:{foot:'가격은 천 VND 단위입니다',bar:'바',food:'음식'}};
 function render(){
  document.documentElement.lang=lang;
  document.getElementById('footer').textContent=labels[lang].foot;
+ document.getElementById('bar-link').textContent=labels[lang].bar;
+ document.getElementById('food-link').textContent=labels[lang].food;
  document.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
- document.getElementById('menu').innerHTML=data.map(s=>`<section class="section"><h2>${s[lang]}</h2><div class="card">${s.items.map(i=>`<div class="item"><div class="item-main"><div class="name">${i[lang==='ru'?0:lang==='en'?1:2]}</div>${i[4]?`<div class="ingredients">${i[4][lang]}</div>`:''}</div>${i[3]?`<div class="price">${i[3]}</div>`:''}</div>`).join('')}</div></section>`).join('');
+ const renderSections=sections=>sections.map(s=>`<section class="section"><h2>${s[lang]}</h2><div class="card">${s.items.map(i=>`<div class="item"><div class="item-main"><div class="name">${i[lang==='ru'?0:lang==='en'?1:2]}</div>${i[4]?`<div class="ingredients">${i[4][lang]}</div>`:''}</div>${i[3]?`<div class="price">${i[3]}</div>`:''}</div>`).join('')}</div></section>`).join('');
+ document.getElementById('menu').innerHTML=`<div id="bar">${renderSections(data)}</div><div id="food">${renderSections(foodData)}</div>`;
 }
 document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.lang;render()}));
 render();
