@@ -75,7 +75,7 @@
 <div class="loader" aria-hidden="true"><img src="assets/picker-logo.jpg" alt=""></div>
 <div class="wrap">
   <header class="hero"><img class="brand-logo" src="assets/picker-logo.jpg" alt="Picker"></header>
-  <div class="controls"><div class="langs"><button data-lang="ru">Русский</button><button data-lang="en" class="active">English</button><button data-lang="ko">한국어</button></div><nav class="menu-nav"><a href="#bar" id="bar-link">Bar</a><a href="#food" id="food-link">Food</a></nav></div>
+  <div class="controls"><div class="langs"><button data-lang="ru">Русский</button><button data-lang="en" class="active">English</button><button data-lang="ko">한국어</button><button data-lang="vi">Tiếng Việt</button></div><nav class="menu-nav"><a href="#bar" id="bar-link">Bar</a><a href="#food" id="food-link">Food</a></nav></div>
   <main id="menu"></main><footer id="footer">Prices in thousands of VND</footer>
 </div>
 <script>
@@ -161,15 +161,51 @@ const foodData=[
 ['Сушёные кальмары','Dried Squid','말린 오징어','109'],
 ['Сушёные анчоусы','Dried Anchovies','말린 멸치','99']]}
 ];
+const viSections={
+ 'Signature Cocktails':'Cocktail đặc biệt','Classic Cocktails':'Cocktail cổ điển','Special Cocktails':'Cocktail sáng tạo','Shots':'Shot','Mixed Drinks':'Đồ uống pha','Non-Alcohol':'Không cồn','Coffee':'Cà phê','Soft Drinks':'Nước giải khát','Beer':'Bia','Wine & Sparkling':'Rượu vang và vang sủi','Vodka, 50 ml / bottle':'Vodka, 50 ml / chai','Whiskey, 50 ml / bottle':'Whiskey, 50 ml / chai','Rum, 50 ml / bottle':'Rum, 50 ml / chai','Gin, 50 ml / bottle':'Gin, 50 ml / chai','Tequila, 50 ml / bottle':'Tequila, 50 ml / chai','Liqueurs & Digestifs, 50 ml / bottle':'Rượu mùi và rượu tiêu hoá, 50 ml / chai','Aperitifs & Vermouths':'Rượu khai vị và vermouth','Food':'Đồ ăn','Snacks':'Đồ ăn nhẹ'
+};
+const viItems={
+ 'Fresh Pick':{ingredients:'Rượu vang trắng, chanh xanh, si-rô hoa hồng, húng quế, Sprite'},
+ 'Aperol Gin-ie':{ingredients:'Xoài, chanh dây, gin, Aperol, chanh xanh, si-rô đường, bạc hà'},
+ 'Pick of Destiny':{ingredients:'Rum trắng, cam, chanh xanh, si-rô dâu tây, bạc hà, Midori'},
+ 'Picker':{ingredients:'Thanh long đỏ, crème de cacao, gin, sữa đặc'},
+ 'High Note':{ingredients:'Dâu tây, húng quế, si-rô vani, gin, chanh xanh, Prosecco'},
+ 'Whiskey Sour':{ingredients:'Bourbon, chanh vàng, si-rô đường, lòng trắng trứng'},
+ 'Aperol Spritz':{ingredients:'Vang sủi, Aperol, nước soda'},
+ 'Mojito':{ingredients:'Rum trắng, chanh xanh, si-rô đường, bạc hà, nước soda'},
+ 'Daiquiri':{ingredients:'Rum trắng, chanh xanh, si-rô đường'},
+ 'Old Fashioned':{ingredients:'Bourbon, si-rô đường, Angostura'},
+ 'Boulevardier':{ingredients:'Bourbon, Campari, Martini Rosso'},
+ 'White Lady':{ingredients:'Gin, Triple Sec, chanh vàng, si-rô đường'},
+ 'French 75':{ingredients:'Gin, chanh vàng, si-rô đường, vang sủi'},
+ 'Margarita':{ingredients:'Tequila, Triple Sec, chanh xanh, si-rô đường'},
+ 'Clover Club':{ingredients:'Gin, si-rô mâm xôi, chanh vàng, lòng trắng trứng'},
+ 'Long Island Iced Tea':{ingredients:'Vodka, gin, rum, tequila, Triple Sec, chanh vàng, si-rô đường, Coca-Cola'},
+ 'Porn Star Martini':{ingredients:'Vodka, Prosecco, si-rô vani, purée chanh dây'},
+ 'Basil Margarita':{ingredients:'Tequila, Triple Sec, chanh xanh, si-rô đường, húng quế'},
+ 'Passion Fruit French 75':{ingredients:'Gin, chanh dây, chanh vàng, si-rô đường, vang sủi'},
+ 'Strawberry Negroni':{ingredients:'Gin, Campari, Martini Rosso, si-rô dâu tây'},
+ 'Mango Daiquiri':{ingredients:'Rum trắng, xoài, chanh xanh, si-rô đường'},
+ 'Orange Whiskey Sour':{ingredients:'Whiskey, cam, chanh vàng, si-rô đường, lòng trắng trứng, Angostura'},
+ 'Green Ember':{ingredients:'Cốt sả-chanh xanh, nước cốt chanh xanh tươi, gin, ginger ale'},
+ 'Spiced Pineapple Fizz':{ingredients:'Cốt dứa-quế-sả, nước cốt chanh vàng tươi, rum gia vị, nước khoáng có ga'},
+ 'Peach Passion Cloud':{ingredients:'Bols Peach, cốt axit lactic, gin, cốt trái cây số 1, bọt chanh dây-xoài'},
+ 'Neon Layer':{ingredients:'Si-rô dâu tây, Midori, rum trắng'},'Vanilla Cut':{ingredients:'Si-rô vani, nước cốt chanh xanh tươi, gin'},'Raspberry Drop':{ingredients:'Purée mâm xôi, nước cốt chanh xanh tươi, vodka'},'Passion Spice Trio, 3 shots':{ingredients:'Rum gia vị, purée chanh dây, nước cốt chanh xanh tươi'},'Strawberry Almond Trio, 3 shots':{ingredients:'Vodka, amaretto, purée dâu tây'},
+ 'Whiskey & Cola':{ingredients:'Whiskey, Coca-Cola, chanh xanh'},'Rum & Cola':{ingredients:'Rum, Coca-Cola, chanh xanh'},'Gin & Tonic':{ingredients:'Gin, tonic, chanh xanh'},
+ 'Mango Passion Lemonade':{ingredients:'Xoài, chanh dây, chanh xanh, si-rô đường, nước soda, bạc hà'},'Raspberry Apple Fizz':{ingredients:'Mâm xôi, nước ép táo, chanh vàng, si-rô đường, nước soda'},'Strawberry Basil Lemonade':{ingredients:'Dâu tây, húng quế, chanh xanh, si-rô đường, nước soda'},'Lime Ginger Fizz':{ingredients:'Cốt sả-chanh xanh, nước cốt chanh xanh tươi, ginger ale'},'Cinnamon Tropical Lemonade':{ingredients:'Cốt dứa-quế-sả, nước cốt chanh vàng tươi, nước khoáng có ga'},
+ 'Double Espresso':{name:'Espresso kép'},'Americano — Ice / Hot':{name:'Americano - đá / nóng'},'Cappuccino — Ice / Hot':{name:'Cappuccino - đá / nóng'},'Add Syrup':{name:'Thêm si-rô'},'Alternative Milk':{name:'Sữa thay thế'},'Water':{name:'Nước suối'},'Soda Water':{name:'Nước soda'},'Sapporo Craft — Lager 0.4 L':{name:'Sapporo Craft - bia vàng 0.4 L'},'Sapporo Craft — Dark 0.4 L':{name:'Sapporo Craft - bia đen 0.4 L'},'White Wine':{name:'Rượu vang trắng'},'Red Wine':{name:'Rượu vang đỏ'},'Brut Sparkling Wine':{name:'Vang sủi brut'},
+ 'French Fries':{name:'Khoai tây chiên'},'French Fries with Parmesan':{name:'Khoai tây chiên với phô mai Parmesan'},'Chicken Nuggets':{name:'Gà viên chiên'},'Seasonal Fruit Platter':{name:'Đĩa trái cây theo mùa'},'Beer Platter':{name:'Đĩa đồ ăn kèm bia'},'Chechil Cheese':{name:'Phô mai Chechil'},'Assorted Chips':{name:'Khoai tây chip tổng hợp'},'Pistachios':{name:'Hạt dẻ cười'},'Dried Squid':{name:'Mực khô'},'Dried Anchovies':{name:'Cá cơm khô'},
+ 'Espresso Tonic':{ingredients:'Espresso, tonic, vỏ cam, si-rô vani'}
+};
 let lang='en';
-const labels={ru:{foot:'Цены указаны в тысячах донгов',bar:'Бар',food:'Еда'},en:{foot:'Prices in thousands of VND',bar:'Bar',food:'Food'},ko:{foot:'가격은 천 VND 단위입니다',bar:'바',food:'음식'}};
+const labels={ru:{foot:'Цены указаны в тысячах донгов',bar:'Бар',food:'Еда'},en:{foot:'Prices in thousands of VND',bar:'Bar',food:'Food'},ko:{foot:'가격은 천 VND 단위입니다',bar:'바',food:'음식'},vi:{foot:'Giá được tính bằng nghìn VND',bar:'Đồ uống',food:'Đồ ăn'}};
 function render(){
  document.documentElement.lang=lang;
  document.getElementById('footer').textContent=labels[lang].foot;
  document.getElementById('bar-link').textContent=labels[lang].bar;
  document.getElementById('food-link').textContent=labels[lang].food;
  document.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
- const renderSections=sections=>sections.map(s=>`<section class="section"><h2>${s[lang]}</h2><div class="card">${s.items.map(i=>`<div class="item"><div class="item-main"><div class="name">${i[lang==='ru'?0:lang==='en'?1:2]}</div>${i[4]?`<div class="ingredients">${i[4][lang]}</div>`:''}</div>${i[3]?`<div class="price">${i[3]}</div>`:''}</div>`).join('')}</div></section>`).join('');
+ const renderSections=sections=>sections.map(s=>`<section class="section"><h2>${lang==='vi'?viSections[s.en]:s[lang]}</h2><div class="card">${s.items.map(i=>{const vi=viItems[i[1]]||{};const name=lang==='vi'?(vi.name||i[1]):i[lang==='ru'?0:lang==='en'?1:2];const ingredients=lang==='vi'?(vi.ingredients||i[4]?.en):i[4]?.[lang];return `<div class="item"><div class="item-main"><div class="name">${name}</div>${ingredients?`<div class="ingredients">${ingredients}</div>`:''}</div>${i[3]?`<div class="price">${i[3]}</div>`:''}</div>`}).join('')}</div></section>`).join('');
  document.getElementById('menu').innerHTML=`<div id="bar">${renderSections(data)}</div><div id="food">${renderSections(foodData)}</div>`;
 }
 document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.lang;render()}));
